@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Agriconnect Pro</title>
+  <!-- Importing Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1c1c1c, #121212);
+      color: #e0e0e0;
+      line-height: 1.6;
+      padding: 20px;
+    }
+  
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  
+    /* About Section */
+    #platform {
+      background-color: rgba(30, 30, 30, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 15px rgba(0, 255, 127, 0.2);
+    }
+  
+    #platform h1 {
+      color: #32cd32;
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+  
+    #platform p {
+      margin-bottom: 20px;
+      font-size: 1.1em;
+      text-align: justify;
+      line-height: 1.8;
+    }
+  
+    .source {
+      font-size: 0.85em;
+      color: #bbb;
+      text-align: right;
+    }
+  
+    /* Additional Information Section */
+    #additional-info {
+      background-color: rgba(30, 30, 30, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 15px rgba(0, 191, 255, 0.2);
+    }
+  
+    #additional-info h2 {
+      text-align: center;
+      color: #1e90ff;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+  
+    #additional-info p {
+      margin-bottom: 15px;
+      font-size: 1em;
+      text-align: justify;
+    }
+  
+    /* Team Section using CSS Grid */
+    #team {
+      margin-bottom: 40px;
+    }
+  
+    #team h2 {
+      text-align: center;
+      color: #1e90ff;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+  
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+  
+    .team-member {
+      background-color: rgba(30, 30, 30, 0.95);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 255, 127, 0.3);
+    }
+  
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px;
+      border: 3px solid #32cd32;
+    }
+  
+    .team-member h3 {
+      margin-bottom: 10px;
+      color: #ffffff;
+      font-size: 1.4em;
+    }
+  
+    .team-member p {
+      font-size: 0.95em;
+      color: #cccccc;
+      margin-bottom: 8px;
+    }
+  
+    .role-desc {
+      font-size: 0.9em;
+      color: #dddddd;
+      margin-top: 12px;
+      text-align: justify;
+    }
+  
+    /* Footer Section */
+    footer {
+      text-align: center;
+      background-color: rgba(30, 30, 30, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 40px;
+      box-shadow: 0 5px 15px rgba(0, 255, 127, 0.2);
+    }
+  
+    footer p {
+      color: #bbbbbb;
+      font-size: 0.9em;
+    }
+  
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .team-members {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(30, 30, 30, 0.9);
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+}
+
+.navbar .logo {
+  font-size: 1.5em;
+  color: #00e676;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00e676;
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🌾 Farmers Market</div>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="dashboard.html">Home</a></li>
+      <li><a href="account.html">My Account</a></li>
+      <li><a href="team.html">Contact</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <!-- About Platform Section -->
+    <section id="platform">
+      <h1>About Agriconnect Pro</h1>
+      <p>
+        Agriconnect Pro is a pioneering digital marketplace designed to empower Indian farmers by connecting them directly with buyers. By cutting out intermediaries, the platform ensures that farmers receive equitable prices for their produce. Our mission is to foster transparency, sustainability, and innovation in the agricultural sector while combating issues such as middleman exploitation and crop spoilage.
+      </p>
+      <p>
+        Leveraging real-time market data, secure phone and Aadhaar authentication, and a user-friendly dark-themed interface with engaging animations, Agriconnect Pro revolutionizes the way farmers approach selling their produce. Our platform evolves continuously through community-driven development and open-source contributions.
+      </p>
+      <p class="source">
+        Built with a commitment to social impact, equity, and technology-driven agricultural solutions.
+      </p>
+    </section>
+    
+    <!-- Additional Information Section -->
+    <section id="additional-info">
+      <h2>Our Story, Mission, and Vision</h2>
+      <p>
+        **Our Story:** Born out of a desire to help India's hardworking farmers, Agriconnect Pro was established as an answer to the systemic challenges plaguing the agricultural marketplace. Our team, composed of dedicated developers, designers, and analysts, envisioned a transparent ecosystem where every transaction could empower the rural community.
+      </p>
+      <p>
+        **Our Mission:** To bridge the gap between farmers and buyers by providing access to real-time market data, secure authentication, and a seamless user experience. We are committed to ensuring that every farmer gets a fair price for their produce while minimizing financial losses and crop waste.
+      </p>
+      <p>
+        **Our Vision:** A future where technology and agriculture merge to create a sustainable, equitable, and prosperous environment for every farmer in India. Through continuous innovation and community collaboration, Agriconnect Pro aims to become the definitive platform for modern agriculture.
+      </p>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team">
+      <h2>Meet Our Team & Roles</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <img src="./images/aslam.jpg" alt="Md. Aslam" class="profile-img" />
+          <h3>Md. Aslam</h3>
+          <p>Role: Lead Developer</p>
+          <p>ID: 23HU1A0584</p>
+          <div class="role-desc">
+            <p>
+              Md. Aslam oversees both front-end and back-end development. He ensures our codebase remains robust and coordinates complex technical tasks to drive a reliable platform. With extensive experience in frameworks such as React and Node.js, he directs development sprints, performs comprehensive code reviews, and mentors junior developers to uphold top-notch technical standards.
+            </p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="./images/naveen.jpg" alt="P. Naveen Reddy" class="profile-img" />
+          <h3>P. Naveen Reddy</h3>
+          <p>Role: UI/UX Designer</p>
+          <p>ID: 23HU1A05A4</p>
+          <div class="role-desc">
+            <p>
+              P. Naveen Reddy creates engaging and intuitive interfaces that transform user interactions into memorable experiences. Leveraging tools like Adobe XD and Figma, he designs responsive layouts and meticulously crafts the platform’s dark-themed UI with smooth animations. His designs not only elevate aesthetics but also enhance usability and overall user engagement.
+            </p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="./images/charam.jpg" alt="T. Charan" class="profile-img" />
+          <h3>T. Charan</h3>
+          <p>Role: Backend Developer</p>
+          <p>ID: 23HU1A05E4</p>
+          <div class="role-desc">
+            <p>
+              T. Charan manages the server-side operations, ensuring seamless data processing and secure API integrations. With a strong command over databases like MySQL and MongoDB alongside proficiency in Node.js, he optimizes server logic and data flow. His work is crucial in building a scalable, high-performance ecosystem that reliably supports the platform's functionalities.
+            </p>
+          </div>
+        </div>
+        
+        <div class="team-member">
+          <img src="./images/shifa.jpg" alt="SK. Shifa Sadiyah" class="profile-img" />
+          <h3>SK. Shifa Sadiyah</h3>
+          <p>Role: Project Analyst</p>
+          <p>ID: 23HU1A05D0</p>
+          <div class="role-desc">
+            <p>
+              SK. Shifa Sadiyah manages project planning and execution with a keen eye for detail. She orchestrates timelines, monitors KPIs, and aligns project outcomes with strategic targets. Her analytical skills and effective communication ensure that all milestones are met, providing a smooth workflow and paving the way for continual process improvements.
+            </p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="./images/sankar.jpg" alt="P. Siva Sankar" class="profile-img" />
+          <h3>P. Siva Sankar</h3>
+          <p>Role: Security Specialist</p>
+          <p>ID: 23HU1A05A7</p>
+          <div class="role-desc">
+            <p>
+              P. Siva Sankar oversees platform security by implementing state-of-the-art protocols and continuous vulnerability monitoring. He employs advanced encryption methods and multi-factor authentication to protect sensitive data. His proactive approach in conducting security audits and updating defenses ensures that Agriconnect Pro remains a secure marketplace for all users.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; 2025 Agriconnect Pro. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farmers' Empowerment Platform</title>
+  <style>
+    /* Import Google Fonts: Montserrat for headings and Roboto for body text */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Roboto:wght@300;400;500&display=swap');
+  
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #121212;
+      color: #f4f4f4;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Headings: Use Montserrat for extra style */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+    
+    /* Farmers' Empowerment Platform Section */
+    #platform {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+    }
+    
+    #platform h1 {
+      color: #00ff7f;
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    
+    #platform p {
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+    
+    .source {
+      font-size: 0.9em;
+      color: #aaa;
+    }
+    
+    /* Combined Team Section */
+    #team {
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+    }
+    
+    #team h2 {
+      text-align: center;
+      color: #00bfff;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    
+    .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    
+    .team-member {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      text-align: center;
+      padding: 15px;
+      width: calc(33% - 20px);
+      margin: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 255, 127, 0.3);
+    }
+    
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 10px;
+      display: block;
+      border: 3px solid #00ff7f;
+      transition: transform 0.3s ease;
+    }
+    
+    .profile-img:hover {
+      animation: pulse 1s infinite;
+    }
+    
+    .team-member h3 {
+      margin-bottom: 5px;
+      color: #f4f4f4;
+    }
+    
+    .team-member p {
+      font-size: 0.9em;
+      color: #aaa;
+      margin-bottom: 5px;
+    }
+    
+    /* Role Description within Team Card */
+    .role-desc {
+      font-size: 0.85em;
+      color: #ccc;
+      margin-top: 10px;
+      text-align: justify;
+      padding: 0 5px;
+    }
+    
+    /* Contact Info for Team Members */
+    .contact-info {
+      margin-top: 12px;
+      font-size: 0.85em;
+      text-align: center;
+    }
+    
+    .contact-info a {
+      color: #00bfff;
+      text-decoration: none;
+      margin: 0 5px;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      text-decoration: underline;
+      color: #66d9ff;
+    }
+    
+    /* E-commerce Product Showcase Section */
+    #showcase {
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+    }
+    
+    #showcase h2 {
+      text-align: center;
+      color: #ffc107;
+      margin-bottom: 20px;
+    }
+    
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    
+    .product-card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 15px;
+      width: calc(25% - 20px);
+      margin: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+    }
+    
+    .product-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .product-card h3 {
+      margin-bottom: 10px;
+      color: #f4f4f4;
+    }
+    
+    .product-card p {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+    
+    /* References Section */
+    #references {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+    }
+    
+    #references h2 {
+      text-align: center;
+      color: #00ff7f;
+      margin-bottom: 20px;
+    }
+    
+    #references ul {
+      list-style: none;
+    }
+    
+    #references li {
+      margin-bottom: 10px;
+    }
+    
+    #references a {
+      color: #00ff7f;
+      text-decoration: none;
+    }
+    
+    #references a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      animation: fadeInUp 1s ease;
+    }
+    
+    footer p {
+      margin-bottom: 5px;
+      color: #ccc;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .team-members, .product-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .team-member, .product-card {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+    /* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(30, 30, 30, 0.9);
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+}
+
+.navbar .logo {
+  font-size: 1.5em;
+  color: #00e676;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00e676;
+}
+  </style>
+ 
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">🌾 Farmers Market</div>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="account.html">My Account</a></li>
+        <li><a href="team.html">Contact</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <!-- Farmers' Empowerment Platform Section -->
+    <section id="platform">
+      <h1>Farmers' Empowerment Platform</h1>
+      <p>
+        Protecting Indian farmers from exploitation and suicide due to low MSP, our open-source platform connects farmers directly with buyers, ensuring fair prices and wider reach.
+        <span class="source">(Source: [1] "Farmers' Suicides in India" by The Hindu)</span>
+      </p>
+      <p>
+        Login via phone number and Aadhar verification, farmers can sell crops at optimal prices, preventing spoilage and middleman exploitation.
+        <span class="source">(Reference: [2] "Minimum Support Price" by Government of India)</span>
+      </p>
+      <p>
+        With a dark theme, animations, and styles, our platform prioritizes user experience and security.
+      </p>
+    </section>
+
+    <!-- Combined Meet Our Team & Roles Section -->
+    <section id="team">
+      <h2>Meet Our Team & Roles</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <img src="./images/aslam.jpg" alt="Md. Aslam" class="profile-img" />
+          <h3>Md. Aslam</h3>
+          <p>Role: Lead Developer</p>
+          <p>ID: 23HU1A0584</p>
+          <div class="role-desc">
+            <p>
+              Md. Aslam oversees both front-end and back-end development. He ensures the codebase is robust, coordinates technical tasks, and drives the overall development process for a smooth, reliable platform.
+            </p>
+          </div>
+          <div class="contact-info">
+            <p>
+              Email: <a href="aslam.iiit.nuzvid@gmail.com">aslam.iiit.nuzvid@gmail.com</a>
+              | LinkedIn: <a href="www.linkedin.com/in/mohammad-aslam-713017251
+
+              " target="_blank">View Profile</a>
+            </p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="./images/naveen.jpg" alt="P. Naveen Reddy" class="profile-img" />
+          <h3>P. Naveen Reddy</h3>
+          <p>Role: UI/UX Designer</p>
+          <p>ID: 23HU1A05A4</p>
+          <div class="role-desc">
+            <p>
+              P. Naveen Reddy crafts engaging and intuitive interfaces. He is responsible for the overall look and feel of the platform, ensuring that the dark theme, animations, and interactive elements enrich the user experience.
+            </p>
+          </div>
+          <div class="contact-info">
+            <p>
+              Email: <a href="naveenreddypolu@gmail.com">naveenreddypolu@gmail.com</a>
+              | LinkedIn: <a href="https://www.linkedin.com/in/naveenreddy-polu-0739b32a7/" target="_blank">View Profile</a>
+            </p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="./images/charam.jpg" alt="T. Charan" class="profile-img" />
+          <h3>T. Charan</h3>
+          <p>Role: Backend Developer</p>
+          <p>ID: 23HU1A05E4</p>
+          <div class="role-desc">
+            <p>
+              T. Charan manages the server-side operations, including database management and API integrations. His work ensures secure and efficient data processing behind the scenes.
+            </p>
+          </div>
+          <div class="contact-info">
+            <p>
+              Email: <a href="charanthota20@gmail.com">charanthota20@gmail.com</a>
+              | LinkedIn: <a href="https://www.linkedin.com/in/charan-thota-3198a731b/" target="_blank">View Profile</a>
+            </p>
+          </div>
+        </div>
+        
+        <div class="team-member">
+          <img src="./images/shifa.jpg" alt="SK. Shifa Sadiyah" class="profile-img" />
+          <h3>SK. Shifa Sadiyah</h3>
+          <p>Role: Project Analyst</p>
+          <p>ID: 23HU1A05D0</p>
+          <div class="role-desc">
+            <p>
+              SK. Shifa Sadiyah is responsible for overseeing project planning and execution. She coordinates timelines, tracks progress, and ensures all milestones are met efficiently.
+            </p>
+          </div>
+          <div class="contact-info">
+            <p>
+              Email: <a href="shifasadiyahshaik10@gmail.com">shifasadiyahshaik10@gmail.com</a>
+              | LinkedIn: <a href="https://www.linkedin.com/in/shaik-shifa-sadiyah-b8b8b7344/" target="_blank">View Profile</a>
+            </p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="./images/sankar.jpg" alt="P. Siva Sankar" class="profile-img" />
+          <h3>P. Siva Sankar</h3>
+          <p>Role: Security Specialist</p>
+          <p>ID: 23HU1A05A7</p>
+          <div class="role-desc">
+            <p>
+              P. Siva Shankar focuses on platform security. He implements robust protocols and continuously monitors for vulnerabilities to keep user data and transactions safe.
+            </p>
+          </div>
+          <div class="contact-info">
+            <p>
+              Email: <a href="mailto:p.siva@example.com">p.siva@gmail.com</a>
+              | LinkedIn: <a href="https://www.linkedin.com/in/p-siva-sankar" target="_blank">View Profile</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- E-commerce Product Showcase Section -->
+    <section id="showcase">
+      <h2>E-commerce Product Showcase</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="./images/wheat.jpg" alt="Organic Wheat" class="product-img" />
+          <h3>Organic Wheat</h3>
+          <p>Fresh organically grown wheat directly from the farms.</p>
+        </div>
+        <div class="product-card">
+          <img src="./images/veg.jpg" alt="Fresh Vegetables" class="product-img" />
+          <h3>Fresh Vegetables</h3>
+          <p>A wide variety of seasonal vegetables ensuring farm-fresh quality.</p>
+        </div>
+        <div class="product-card">
+          <img src="./images/fruits.jpg" alt="Ripe Fruits" class="product-img" />
+          <h3>Ripe Fruits</h3>
+          <p>Quality fruits sourced directly from orchards.</p>
+        </div>
+        <div class="product-card">
+          <img src="./images/download (1).jpg" alt="Grains & Pulses" class="product-img" />
+          <h3>Grains & Pulses</h3>
+          <p>Nutritious grains and pulses with the best farm standards.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references">
+      <h2>References</h2>
+      <ul>
+        <li>[1] <a href="#" target="_blank">The Hindu - Farmers' Suicides in India</a></li>
+        <li>[2] <a href="#" target="_blank">Government of India - Minimum Support Price</a></li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Farmers' Empowerment Platform. All Rights Reserved.</p>
+      <p>2nd Year, 2nd Semester, CSE B Section</p>
+    </footer>
+  </div>
+</body>
+</html>

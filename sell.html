@@ -1,0 +1,48 @@
+<!-- sell.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures Edge uses the latest engine -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+  <title>Farmers Market Platform – Sell Products</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🌾 Farmers Market</div>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="dashboard.html">Home</a></li>
+      <li><a href="account.html">My Account</a></li>
+      <li><a href="team.html">Contact</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <section class="sell-section">
+      <h2>Sell Your Products</h2>
+      <form id="sell-form">
+        <label for="crop-name">Crop Name:</label>
+        <input type="text" id="crop-name" name="cropName" placeholder="Enter crop name" required>
+
+        <label for="crop-price">Price per Unit (₹):</label>
+        <input type="number" id="crop-price" name="cropPrice" placeholder="Enter price per unit" required>
+
+        <label for="crop-quantity">Quantity (in Quintals):</label>
+        <input type="number" id="crop-quantity" name="cropQuantity" placeholder="Enter quantity" required>
+
+        <label for="crop-photo">Upload Crop Photo:</label>
+        <input type="file" id="crop-photo" name="cropPhoto" accept="image/*" required>
+
+        <button type="submit">List Product</button>
+      </form>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>&copy; 2025 Farmers Market Platform. All Rights Reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

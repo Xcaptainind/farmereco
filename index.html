@@ -1,0 +1,45 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures Edge uses the latest engine -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+  <title>Farmers Market Platform – Welcome</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="language-selector">
+    <label for="language">Select Language:</label>
+    <select id="language">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी (Hindi)</option>
+      <!-- Add more languages as needed -->
+    </select>
+  </div>
+  <div class="container">
+    <header class="header">
+      <h1>🌾 Agriconnect Pro</h1>
+      <p>Empowering Farmers to Get the Best Prices</p>
+    </header>
+    <main class="main-content">
+      <section class="login-section">
+        <h2>Farmer Login</h2>
+        <form id="login-form">
+          <label for="phone">📱 Phone Number:</label>
+          <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+          <label for="aadhar">🆔 Aadhaar Number:</label>
+          <input type="text" id="aadhar" name="aadhar" placeholder="Enter your Aadhaar number" required>
+          <button type="submit">Login</button>
+        </form>
+        <p class="register-text">Don't have an account? <a href="#" id="register-link">Register here</a></p>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2025 Farmers Market Platform. All Rights Reserved.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+// script.js - Updated with all functionalities
+
+function setupEventListeners() {
+    const updateProfileBtn = document.getElementById('update-profile-btn');
+    const changeLanguageBtn = document.getElementById('change-language-btn');
+    const deleteAccountBtn = document.getElementById('delete-account-btn');
+    const cartLink = document.getElementById('cart-link');
+    const logoutLinks = document.querySelectorAll('#logout');
+    const buyButton = document.getElementById('buy-button');
+    const sellButton = document.getElementById('sell-button');
+    const loginForm = document.getElementById('login-form');
+    const registerLink = document.getElementById('register-link');
+    const sellForm = document.getElementById('sell-form');
+    const languageSelect = document.getElementById('language');
+
+    if (updateProfileBtn) updateProfileBtn.addEventListener('click', showProfileUpdateForm);
+    if (changeLanguageBtn) changeLanguageBtn.addEventListener('click', showLanguageSelector);
+    if (deleteAccountBtn) deleteAccountBtn.addEventListener('click', confirmDeleteAccount);
+    if (cartLink) cartLink.addEventListener('click', showCart);
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+    if (registerLink) registerLink.addEventListener('click', showRegistrationForm);
+    if (sellForm) sellForm.addEventListener('submit', handleSellFormSubmission);
+    
+    if (buyButton) {
+        buyButton.addEventListener('click', () => window.location.href = 'buyer.html');
+    }
+    if (sellButton) {
+        sellButton.addEventListener('click', () => window.location.href = 'sell.html');
+    }
+
+    logoutLinks.forEach(link => {
+        link.addEventListener('click', handleLogout);
+    });
+
+    if (languageSelect) {
+        languageSelect.value = localStorage.getItem('preferredLanguage') || 'en';
+        languageSelect.addEventListener('change', function() {
+            const language = this.value;
+            localStorage.setItem('preferredLanguage', language);
+            updateLanguage();
+        });
+    }
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    const phone = document.getElementById('phone').value;
+    const aadhar = document.getElementById('aadhar').value;
+
+    if (!phone || !aadhar) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    const user = {
+        phone: phone,
+        aadhar: aadhar,
+        name: 'Farmer John',
+        email: 'john@example.com',
+        language: localStorage.getItem('preferredLanguage') || 'en'
+    };
+
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    window.location.href = 'dashboard.html';
+}
+
+function showRegistrationForm() {
+    const loginSection = document.querySelector('.login-section');
+    loginSection.innerHTML = `
+        <h2>Register as Farmer</h2>
+        <form id="register-form">
+            <label for="reg-name">👤 Full Name:</label>
+            <input type="text" id="reg-name" name="name" required>
+            
+            <label for="reg-phone">📱 Phone Number:</label>
+            <input type="tel" id="reg-phone" name="phone" required>
+            
+            <label for="reg-aadhar">🆔 Aadhaar Number:</label>
+            <input type="text" id="reg-aadhar" name="aadhar" required>
+            
+            <label for="reg-email">📧 Email:</label>
+            <input type="email" id="reg-email" name="email" required>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p class="login-text">Already have an account? <a href="#" id="login-link">Login here</a></p>
+    `;
+
+    document.getElementById('register-form').addEventListener('submit', handleRegistration);
+    document.getElementById('login-link').addEventListener('click', showLoginForm);
+}
+
+function showLoginForm() {
+    window.location.reload();
+}
+
+function handleRegistration(event) {
+    event.preventDefault();
+    const name = document.getElementById('reg-name').value;
+    const phone = document.getElementById('reg-phone').value;
+    const aadhar = document.getElementById('reg-aadhar').value;
+    const email = document.getElementById('reg-email').value;
+
+    if (!name || !phone || !aadhar || !email) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    const user = {
+        name: name,
+        phone: phone,
+        aadhar: aadhar,
+        email: email,
+        language: localStorage.getItem('preferredLanguage') || 'en'
+    };
+
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    alert('Registration successful!');
+    window.location.href = 'dashboard.html';
+}
+
+function handleLogout(event) {
+    event.preventDefault();
+    localStorage.removeItem('currentUser');
+    window.location.href = 'index.html';
+}
+
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+    alert('Product added to cart!');
+}
+
+function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.id !== productId);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+    
+    const cartModal = document.querySelector('.cart-modal');
+    if (cartModal) {
+        cartModal.remove();
+        if (cart.length > 0) {
+            showCart(new Event('click'));
+        }
+    }
+}
+
+function showCart(event) {
+    event.preventDefault();
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    const cartHTML = `
+        <div class="cart-modal">
+            <div class="cart-content">
+                <h2>Shopping Cart</h2>
+                ${cart.map(item => `
+                    <div class="cart-item">
+                        <h3>${item.name}</h3>
+                        <p>Price: ₹${item.price}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                        <button onclick="removeFromCart(${item.id})">Remove</button>
+                    </div>
+                `).join('')}
+                <div class="cart-total">
+                    <h3>Total: ₹${total}</h3>
+                    <button onclick="checkout()">Checkout</button>
+                    <button onclick="closeCart()">Close</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Remove existing cart modal if any
+    const existingModal = document.querySelector('.cart-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    document.body.insertAdjacentHTML('beforeend', cartHTML);
+}
+
+function closeCart() {
+    const cartModal = document.querySelector('.cart-modal');
+    if (cartModal) {
+        cartModal.remove();
+    }
+}
+
+function updateCartDisplay() {
+    const cartCount = document.getElementById('cart-count');
+    if (cartCount) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cartCount.textContent = cart.length;
+    }
+}
+
+function showProfileUpdateForm() {
+    const currentInfo = document.querySelector('.account-info');
+    const user = JSON.parse(localStorage.getItem('currentUser')) || {};
+    
+    currentInfo.innerHTML = `
+        <form class="profile-form" id="profile-update-form">
+            <input type="text" id="name" placeholder="Name" value="${user.name || ''}" required>
+            <input type="tel" id="phone" placeholder="Phone" value="${user.phone || ''}" required>
+            <input type="email" id="email" placeholder="Email" value="${user.email || ''}" required>
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="loadUserProfile()">Cancel</button>
+        </form>
+    `;
+    
+    document.getElementById('profile-update-form').addEventListener('submit', updateProfile);
+}
+
+function updateProfile(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    user.name = name;
+    user.phone = phone;
+    user.email = email;
+
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    loadUserProfile();
+    alert('Profile updated successfully!');
+}
+
+function showLanguageSelector() {
+    const languages = ['English', 'Hindi', 'Spanish'];
+    const currentInfo = document.querySelector('.account-info');
+    currentInfo.innerHTML = `
+        <div class="profile-form">
+            <h3>Select Language</h3>
+            <select id="language-select">
+                ${languages.map(lang => `<option value="${lang}">${lang}</option>`).join('')}
+            </select>
+            <button onclick="updateLanguage()">Save</button>
+            <button onclick="loadUserProfile()">Cancel</button>
+        </div>
+    `;
+}
+
+function updateLanguage() {
+    const language = document.getElementById('language-select').value;
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user) {
+        user.language = language;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+    localStorage.setItem('preferredLanguage', language);
+    alert(`Language updated to ${language}`);
+    loadUserProfile();
+}
+
+function confirmDeleteAccount() {
+    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        localStorage.clear();
+        alert('Account deleted successfully');
+        window.location.href = 'index.html';
+    }
+}
+
+function loadUserProfile() {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user && document.querySelector('.account-info')) {
+        document.querySelector('.account-info').innerHTML = `
+            <p><strong>Name:</strong> ${user.name}</p>
+            <p><strong>Phone:</strong> ${user.phone}</p>
+            <p><strong>Email:</strong> ${user.email}</p>
+            <p><strong>Language:</strong> ${user.language || 'English'}</p>
+        `;
+    }
+}
+
+function handleSellFormSubmission(event) {
+    event.preventDefault();
+    const cropName = document.getElementById('crop-name').value;
+    const cropPrice = document.getElementById('crop-price').value;
+    const cropQuantity = document.getElementById('crop-quantity').value;
+    const cropPhoto = document.getElementById('crop-photo').files[0];
+
+    if (!cropName || !cropPrice || !cropQuantity || !cropPhoto) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    const product = {
+        id: Date.now(),
+        name: cropName,
+        price: cropPrice,
+        quantity: cropQuantity,
+        seller: JSON.parse(localStorage.getItem('currentUser')).name
+    };
+
+    let products = JSON.parse(localStorage.getItem('products')) || [];
+    products.push(product);
+    localStorage.setItem('products', JSON.stringify(products));
+
+    alert('Product listed successfully!');
+    window.location.href = 'account.html';
+}
+
+function loadProducts() {
+    const productsContainer = document.getElementById('products-container');
+    if (productsContainer) {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        productsContainer.innerHTML = products.map(product => `
+            <div class="product-card">
+                <h3>${product.name}</h3>
+                <p class="price">₹${product.price}</p>
+                <p>Quantity: ${product.quantity} quintals</p>
+                <p>Seller: ${product.seller}</p>
+                <button onclick="addToCart({id: ${product.id}, name: '${product.name}', price: ${product.price}, quantity: 1})">
+                    Add to Cart
+                </button>
+            </div>
+        `).join('');
+    }
+
+    const myProducts = document.getElementById('my-products');
+    if (myProducts) {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        const userProducts = products.filter(product => product.seller === user.name);
+        myProducts.innerHTML = userProducts.map(product => `
+            <div class="product-card">
+                <h3>${product.name}</h3>
+                <p class="price">₹${product.price}</p>
+                <p>Quantity: ${product.quantity} quintals</p>
+                <button onclick="deleteProduct(${product.id})">Remove Listing</button>
+            </div>
+        `).join('');
+    }
+}
+
+function loadOrders() {
+    const ordersContainer = document.getElementById('orders-container');
+    if (ordersContainer) {
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        const userOrders = orders.filter(order => order.buyer === user.name);
+        ordersContainer.innerHTML = userOrders.map(order => `
+            <div class="order-card">
+                <h3>Order #${order.id}</h3>
+                <p>Items: ${order.items.map(item => item.name).join(', ')}</p>
+                <p>Total: ₹${order.total}</p>
+                <p>Status: ${order.status}</p>
+            </div>
+        `).join('');
+    }
+}
+
+function checkout() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    const order = {
+        id: Date.now(),
+        items: cart,
+        total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+        buyer: JSON.parse(localStorage.getItem('currentUser')).name,
+        status: 'Pending'
+    };
+
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    
+    localStorage.setItem('cart', '[]');
+    alert('Order placed successfully!');
+    updateCartDisplay();
+    closeCart();
+    
+    if (document.querySelector('.account-section')) {
+        loadOrders();
+    }
+}
+
+function deleteProduct(productId) {
+    let products = JSON.parse(localStorage.getItem('products')) || [];
+    products = products.filter(product => product.id !== productId);
+    localStorage.setItem('products', JSON.stringify(products));
+    loadProducts();
+}
+
+function loadInitialData() {
+    const user = localStorage.getItem('currentUser');
+    if (!user && !window.location.href.includes('index.html')) {
+        window.location.href = 'index.html';
+    }
+    
+    loadUserProfile();
+    loadProducts();
+    loadOrders();
+    updateCartDisplay();
+}
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', function() {
+    setupEventListeners();
+    loadInitialData();
+});

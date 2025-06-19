@@ -1,0 +1,53 @@
+<!-- account.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures Edge uses the latest engine -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+  <title>Farmers Market Platform – My Account</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🌾 Farmers Market</div>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="dashboard.html">Home</a></li>
+      <li><a href="account.html">My Account</a></li>
+      <li><a href="team.html">Contact</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <section class="account-section">
+      <h2>Account Details</h2>
+      <div class="account-info">
+        <p><strong>Name:</strong> Farmer John</p>
+        <p><strong>Phone:</strong> 1234567890</p>
+        <p><strong>Email:</strong> john@example.com</p>
+        <p><strong>Language:</strong> English</p>
+      </div>
+      <h2>My Products</h2>
+      <div class="my-products" id="my-products">
+        <!-- Farmer's listed products will be displayed here -->
+      </div>
+      <h2>My Orders</h2>
+      <div class="orders-container" id="orders-container">
+        <!-- Orders will be loaded here dynamically -->
+      </div>
+      <h2>Settings</h2>
+      <div class="settings">
+        <button id="change-language-btn">Change Language</button>
+        <button id="update-profile-btn">Update Profile</button>
+        <button id="delete-account-btn">Delete Account</button>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>&copy; 2025 Farmers Market Platform. All Rights Reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
